@@ -1,0 +1,273 @@
+LAST
+<!DOCTYPE HTML>  
+<html>
+
+<head>
+  <title>Form Validation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container mt-3">
+<h2>Library Form Validation</h2>
+<hr>
+<form name="registrationForm" method="POST" action="http://10.10.139.82:8000/api/patrons" onsubmit="return validateForm()">
+<div class="mb-3 mt-3">
+  <h3>Personal Details</h3>
+  <label for="name" class="form-label">Name:</label>
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="last_name" placeholder="Last Name" required>
+    </div>
+  </div>
+  
+  <div class="mb-3 mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="birthday" class="form-label col-md-4">Birthday:</label>
+      <input type="date" class="form-control" id="birthday" name="birthday" required>
+    </div>
+    <div class="col-md-6">
+      <label for="gender" class="form-label col-md-4">Gender:</label> <br>
+        <input class="form-check-input" type="checkbox" id="female" name="gender" value="female">
+        <label class="form-check-label" for="female">Female</label> <br>
+        <input class="form-check-input" type="checkbox" id="male" name="gender" value="male">
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="mb-3 mt-3">
+  <h3>Address Details</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="city" class="form-label col-md-4">City:</label>
+          <input type="text" class="form-control" id="city" name="City" autocomplete>
+      </div>
+
+      <div class="col-md-6">
+        <label for="province" class="form-label col-md-4">Province:</label>
+        <input type="text" class="form-control" id="province" name="Province" autocomplete>
+      </div>
+
+      <div class="col-md-6">
+        <label for="zip" class="form-label col-md-4">Zip:</label>
+        <input type="text" class="form-control"id="zip" name="zip" autocomplete>
+      </div>
+
+      <div class="col-md-6">
+        <label for="country" class="form-label col-md-4">Country:</label>
+        <input type="text" class="form-control" id="country" name="Country" autocomplete></input>
+      </div>
+    </div>
+  <hr>
+    <div class ="row">
+    <h3>Contact Details</h3> <br>
+      <div class="col-md-6">
+        <label for="primaryPhone" class="form-label col-md-4">Primary Phone:</label>
+        <input type="text" id="phone_number" class="form-control" name="primaryPhone"  maxlength="11" placeholder="Enter primary phone number">
+        
+      </div>
+
+      <div class="col-md-6">
+        <label for="secondaryPhone" class="form-label col-md-4">SecondaryPhone:</label>
+        <input type="text" id="phone_number" class="form-control" name="secondaryPhone"  maxlength="11" placeholder="Enter secondary phone number">
+        
+      </div>
+
+      <div class="col-md-6">
+        <label for="otherPhone" class="form-label col-md-4">Other Phone:</label>
+        <input type="text" id="phone_number" class="form-control" name="otherPhone" maxlength="11" placeholder="Enter other phone number">
+      </div>
+
+      <div class="row">
+      <div class="col-md-6">
+        <label for="phone" class="form-label col-md-4">Primary Email:</label>
+        <input type="email" id="email" class="form-control" pattern="[^ @]*@[^ @]*" name="primaryEmail" placeholder="name.surname@gmail.com">
+      </div>
+      
+      <div class="col-md-6">
+        <label for="phone" class="form-label col-md-4">SecondaryEmail:</label>
+        <input type="email" id="email" class="form-control" pattern="[^ @]*@[^ @]*" name="secondaryEmail" placeholder="name.surname@gmail.com">
+      </div>
+    <div>
+ 
+    <div class ="row">
+      <div class="col-md-6">
+        <label class="form-label">Primary Contact Method:</label>
+          <div>
+            <input type="checkbox" class="form-check-input"  id="phone_number" maxlength="11" name="primaryContactMethod" value="phone">
+            <label for="contactPhone">Phone</label>
+            <br>
+            <input type="checkbox" class="form-check-input" pattern="[^ @]*@[^ @]*" id="email" name="primaryContactMethod" value="email">
+            <label for="contactEmail">Email</label>
+          </div>
+        </div>
+
+        <div class ="row">
+          <div class="col-md-6" id="phoneInputContainer" style="display: none;">
+            <label for="primaryPhone" class="form-label">Primary Phone:</label>
+            <input type="text" id="phone_number" class="form-control" name="primaryPhone" placeholder="Enter primary phone number">
+          </div>
+
+          <div class="col-md-6" id="emailInputContainer" style="display: none;">
+              <label for="primaryEmail" class="form-label">Primary Email:</label>
+            <input type="email" id="email" class="form-control" name="primaryEmail" placeholder="name.surname@gmail.com">
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class ="row">
+    <h3>Student Details</h3> <br> 
+        <div class="col-md-6">
+        <label for="cardumber" class="form-label">Student Number:</label>
+        <input type="text" class="form-control" id="card_number" name="cardNumber" maxlength="9" placeholder="Enter your student snumber">
+      </div>
+
+      <div class="col-md-6">
+        <label for="course" class="form-label">Course:</label>
+        <select class="form-select" id="course" name="course">
+          <option value="" disabled selected>Select your course</option>
+          <option value="computer_science">Computer Science</option>
+          <option value="information_technology">Information Technology</option>
+          <option value="business_administration">Business Administration</option>
+          <option value="engineering">Engineering</option>
+          <option value="nursing">Nursing</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="college" class="form-label">College:</label>
+        <select class="form-select" id="college" name="college">
+          <option value="" disabled selected>Select your college</option>
+          <option value="college_of_engineering">College of Engineering</option>
+          <option value="college_of_science">College of Science</option>
+          <option value="college_of_business">College of Business</option>
+          <option value="college_of_nursing">College of Nursing</option>
+          <option value="college_of_arts">College of Arts</option>
+        </select>
+      </div>
+    </div>
+  <div>
+  <br>
+  
+  <div class ="row">
+    <div class="col-md-6">
+      <label for="registrationDate" class="form-label">Registration Date:</label>
+      <input type="date" class="form-control" id="registration_date" name="registrationDate">
+    </div>
+
+    <div class="col-md-6">
+      <label for="expiryDate" class="form-label">Date Expiry:</label>
+      <input type="date" class="form-control" id="expiry_date" name="expiryDate">
+    </div>
+   
+  </div>
+
+  <input type="submit" name="submit" value="Submit"> 
+</div>
+
+<script>
+    // Checkbox toggling for primary contact method
+    const phoneCheckbox = document.getElementById('phone_number');
+    const emailCheckbox = document.getElementById('email'); // Fixed ID reference
+    const phoneInputContainer = document.getElementById('phoneInputContainer');
+    const emailInputContainer = document.getElementById('emailInputContainer');
+
+    function toggleInputFields() {
+        // Show or hide phone input based on checkbox selection
+        phoneInputContainer.style.display = phoneCheckbox.checked ? 'block' : 'none';
+        if (!phoneCheckbox.checked) {
+            document.getElementById('phone_number').value = ''; // Clear input if not checked
+        }
+
+        // Show or hide email input based on checkbox selection
+        emailInputContainer.style.display = emailCheckbox.checked ? 'block' : 'none';
+        if (!emailCheckbox.checked) {
+            document.getElementById('email').value = ''; // Clear input if not checked
+        }
+    }
+
+    // Attach the function to the checkboxes after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        phoneCheckbox.addEventListener('change', toggleInputFields);
+        emailCheckbox.addEventListener('change', toggleInputFields);
+    });
+
+    ocument.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('birthday').setAttribute('max', '2015-12-31');
+    });
+
+   
+    const form = document.getElementById('registrationForm');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('http://10.10.139.82:8000/api/patrons', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                if (result.errors) {
+                    displayErrors(result.errors);
+                } else {
+                    alert('An error occurred while submitting the form. Please try again.');
+                }
+            } else {
+                alert('Form submitted successfully!');
+                form.reset();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form. Please try again.');
+        }
+    });
+
+    // Function to display errors next to fields
+    function displayErrors(errors) {
+        clearAllErrors();
+        Object.keys(errors).forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (field) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'text-danger error-message';
+                errorDiv.textContent = errors[fieldName];
+                field.parentNode.appendChild(errorDiv);
+                field.classList.add('is-invalid');
+            }
+        });
+    }
+
+    // Function to clear error messages
+    function clearAllErrors() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(error => error.remove());
+        const invalidFields = document.querySelectorAll('.is-invalid');
+        invalidFields.forEach(field => field.classList.remove('is-invalid'));
+    }
+</script>
+</form> 
+
+</body>
+</html>
